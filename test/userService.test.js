@@ -3,8 +3,6 @@ const assert = require('node:assert');
 const { createContainer, asValue, asFunction } = require('awilix');
 const userService = require('../src/services/userService');
 
-// Example: fake knex query builder that mimics the chainable API
-// just enough for userService to work against in tests.
 function createFakeKnex(users) {
   const table = (name) => ({
     select: async () => users,

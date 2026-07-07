@@ -1,8 +1,3 @@
-/**
- * productService factory.
- * Awilix calls this function and injects any registered dependency
- * whose name matches a destructured property below (e.g. `knex`).
- */
 function productService({ knex }) {
   return {
     getAll: () => knex('products').select('*'),

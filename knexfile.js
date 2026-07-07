@@ -1,9 +1,5 @@
 require('dotenv').config();
 
-/**
- * Knex configuration.
- * Connection details come from environment variables (see .env.example).
- */
 const baseConnection = {
   host: process.env.PGHOST,
   port: Number(process.env.PGPORT) || 5432,
