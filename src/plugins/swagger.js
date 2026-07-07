@@ -1,17 +1,19 @@
-const fp = require('fastify-plugin');
+import fp from 'fastify-plugin';
+import swagger from '@fastify/swagger';
+import swaggerUi from '@fastify/swagger-ui';
 
-module.exports = fp(async function swaggerPlugin(fastify) {
-  await fastify.register(require('@fastify/swagger'), {
+export default fp(async function swaggerPlugin(fastify) {
+  await fastify.register(swagger, {
     openapi: {
       info: {
         title: 'My API Portal',
-        description: 'API portal built with Fastify, Knex, and Postgres',
+        description: 'API portal built with Fastify, Sequelize, and Postgres',
         version: '1.0.0'
       }
     }
   });
 
-  await fastify.register(require('@fastify/swagger-ui'), {
+  await fastify.register(swaggerUi, {
     routePrefix: '/docs'
   });
 });
