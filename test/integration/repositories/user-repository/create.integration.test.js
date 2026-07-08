@@ -19,7 +19,7 @@ describe('UserRepository.create (integration)', () => {
 
     await ctx.run(async () => {
       const created = await repo.create(
-        { name: 'Grace Hopper', email: 'grace@example.com' },
+        { name: 'Grace Hopper', email: 'grace@example.com', token: 'test-token-grace' },
         { transaction: ctx.transaction }
       );
       expect(created.id).toBeDefined();

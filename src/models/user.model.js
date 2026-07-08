@@ -18,6 +18,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
+    },
+    token: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'user'
     }
   },
   {

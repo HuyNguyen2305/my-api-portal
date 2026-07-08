@@ -1,4 +1,5 @@
 import { buildSuccessResponse } from '#common-schemas/response.schema';
+import { AUTH_HEADERS_SCHEMA } from '#common-schemas/common.schema';
 
 const userSchema = {
   type: 'object',
@@ -6,18 +7,29 @@ const userSchema = {
     id: { type: 'integer' },
     name: { type: 'string' },
     email: { type: 'string', format: 'email' },
+    role: { type: 'string' },
     createdAt: { type: 'string' },
     updatedAt: { type: 'string' }
   }
 };
 
+const userWithTokenSchema = {
+  type: 'object',
+  properties: {
+    ...userSchema.properties,
+    token: { type: 'string' }
+  }
+};
+
 export const listUsersSchema = {
+  headers: AUTH_HEADERS_SCHEMA,
   response: {
     200: buildSuccessResponse({ type: 'array', items: userSchema })
   }
 };
 
 export const getUserSchema = {
+  headers: AUTH_HEADERS_SCHEMA,
   params: {
     type: 'object',
     required: ['id'],
@@ -38,11 +50,12 @@ export const createUserSchema = {
     }
   },
   response: {
-    201: buildSuccessResponse(userSchema)
+    201: buildSuccessResponse(userWithTokenSchema)
   }
 };
 
 export const updateUserSchema = {
+  headers: AUTH_HEADERS_SCHEMA,
   params: {
     type: 'object',
     required: ['id'],
@@ -61,6 +74,7 @@ export const updateUserSchema = {
 };
 
 export const deleteUserSchema = {
+  headers: AUTH_HEADERS_SCHEMA,
   params: {
     type: 'object',
     required: ['id'],

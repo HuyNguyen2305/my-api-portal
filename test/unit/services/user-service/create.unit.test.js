@@ -12,7 +12,10 @@ describe('UserService.create', () => {
 
     const result = await service.create(payload);
 
-    expect(userRepository.create).toHaveBeenCalledWith(payload);
+    expect(userRepository.create).toHaveBeenCalledWith({
+      ...payload,
+      token: expect.any(String)
+    });
     expect(result).toBe(created);
   });
 });

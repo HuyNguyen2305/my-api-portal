@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { NotFoundError } from '#configs/error';
 
 export class UserService {
@@ -16,7 +17,8 @@ export class UserService {
   }
 
   create(data) {
-    return this.userRepository.create(data);
+    const token = crypto.randomBytes(32).toString('hex');
+    return this.userRepository.create({ ...data, token });
   }
 
   async update(id, data) {

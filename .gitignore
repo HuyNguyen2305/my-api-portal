@@ -1,5 +1,4 @@
 node_modules/
 .env
-.env.test
 *.log
-CLAUDE_CODE_PROMPT.md
+CLAUDE.md

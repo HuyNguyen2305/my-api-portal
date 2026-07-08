@@ -18,6 +18,18 @@ export class ValidationError extends CustomError {
   }
 }
 
+export class AuthError extends CustomError {
+  constructor(message = 'Unauthorized', options = {}) {
+    super(401, message, options);
+  }
+}
+
+export class ForbiddenError extends CustomError {
+  constructor(message = 'Forbidden', options = {}) {
+    super(403, message, options);
+  }
+}
+
 export function setErrorHandler(fastify) {
   fastify.setErrorHandler((error, request, reply) => {
     if (error instanceof CustomError) {

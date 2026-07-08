@@ -1,10 +1,14 @@
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import autoload from '@fastify/autoload';
 import { fastifyAwilixPlugin } from '@fastify/awilix';
+import fastifyRequestContext from '@fastify/request-context';
+import secureSession from '@fastify/secure-session';
 import swaggerPlugin from '#src/plugins/swagger';
+import passportMiddleware from '#src/common/middleware/passport';
 import { registerContainer } from '#src/container';
 import { setErrorHandler } from '#configs/error';
 
@@ -20,6 +24,9 @@ export async function buildApp(opts = {}) {
   await registerContainer();
 
   await app.register(cors);
+  await app.register(fastifyRequestContext);
+  await app.register(secureSession, { key: crypto.randomBytes(32) });
+  await app.register(passportMiddleware);
   await app.register(swaggerPlugin);
 
   await app.register(autoload, {
