@@ -19,7 +19,8 @@ describe('ProductRepository.get (integration)', () => {
     rollback = ctx.rollback;
 
     await ctx.run(async () => {
-      const result = await repo.get({}, { transaction: ctx.transaction });
+      const seededIds = productsFixture.products.map((product) => product.id);
+      const result = await repo.get({ id: seededIds }, { transaction: ctx.transaction });
       expect(result.map((product) => product.sku).sort()).toEqual(
         productsFixture.products.map((product) => product.sku).sort()
       );

@@ -19,7 +19,8 @@ describe('UserRepository.get (integration)', () => {
     rollback = ctx.rollback;
 
     await ctx.run(async () => {
-      const result = await repo.get({}, { transaction: ctx.transaction });
+      const seededIds = usersFixture.users.map((user) => user.id);
+      const result = await repo.get({ id: seededIds }, { transaction: ctx.transaction });
       expect(result.map((user) => user.email).sort()).toEqual(
         usersFixture.users.map((user) => user.email).sort()
       );
