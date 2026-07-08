@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '#configs/env';
 import { buildApp } from '#src/index';
 
 const app = await buildApp();

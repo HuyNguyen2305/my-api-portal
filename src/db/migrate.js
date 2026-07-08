@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import '#configs/env';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { readdir } from 'node:fs/promises';

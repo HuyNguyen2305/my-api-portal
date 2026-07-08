@@ -1,10 +1,8 @@
-import 'dotenv/config';
+import '#configs/env';
 import { Sequelize } from 'sequelize';
 
-const database = process.env.NODE_ENV === 'test' ? process.env.PGDATABASE_TEST : process.env.PGDATABASE;
-
 export const sequelize = new Sequelize(
-  database,
+  process.env.PGDATABASE,
   process.env.PGUSER,
   process.env.PGPASSWORD,
   {
