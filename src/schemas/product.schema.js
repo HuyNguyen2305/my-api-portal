@@ -1,5 +1,4 @@
 import { buildSuccessResponse } from '#common-schemas/response.schema';
-import { AUTH_HEADERS_SCHEMA } from '#common-schemas/common.schema';
 
 const productSchema = {
   type: 'object',
@@ -16,14 +15,14 @@ const productSchema = {
 };
 
 export const listProductsSchema = {
-  headers: AUTH_HEADERS_SCHEMA,
+  security: [{ bearerAuth: [] }],
   response: {
     200: buildSuccessResponse({ type: 'array', items: productSchema })
   }
 };
 
 export const getProductSchema = {
-  headers: AUTH_HEADERS_SCHEMA,
+  security: [{ bearerAuth: [] }],
   params: {
     type: 'object',
     required: ['id'],
@@ -35,7 +34,7 @@ export const getProductSchema = {
 };
 
 export const createProductSchema = {
-  headers: AUTH_HEADERS_SCHEMA,
+  security: [{ bearerAuth: [] }],
   body: {
     type: 'object',
     required: ['name', 'price', 'sku'],
@@ -53,7 +52,7 @@ export const createProductSchema = {
 };
 
 export const updateProductSchema = {
-  headers: AUTH_HEADERS_SCHEMA,
+  security: [{ bearerAuth: [] }],
   params: {
     type: 'object',
     required: ['id'],
@@ -75,7 +74,7 @@ export const updateProductSchema = {
 };
 
 export const deleteProductSchema = {
-  headers: AUTH_HEADERS_SCHEMA,
+  security: [{ bearerAuth: [] }],
   params: {
     type: 'object',
     required: ['id'],

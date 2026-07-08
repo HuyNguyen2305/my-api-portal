@@ -9,6 +9,15 @@ export default fp(async function swaggerPlugin(fastify) {
         title: 'My API Portal',
         description: 'API portal built with Fastify, Sequelize, and Postgres',
         version: '1.0.0'
+      },
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: 'http',
+            scheme: 'bearer',
+            description: 'Token returned once by POST /users. Send as: Authorization: Bearer <token>'
+          }
+        }
       }
     }
   });
